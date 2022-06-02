@@ -21,7 +21,10 @@ export class ArticleIndexService {
       ],
     });
   }
-  async create(ArticleDto: ArticleDto): Promise<ArticleEntity> {
+  async create(ArticleDto: ArticleDto) {
     return this.articleRepository.save(ArticleDto);
+  }
+  async findOne(id: number): Promise<ArticleEntity> {
+    return this.articleRepository.findOne(id);
   }
 }

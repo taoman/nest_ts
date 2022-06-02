@@ -1,8 +1,7 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { ArticleIndexService } from './article-index.service';
 import { ArticleDto } from './article-index.dto';
 import { ArticleEntity } from './article-index.entity';
-import { query } from 'express';
 @Controller('article')
 export class ArticleIndexController {
   constructor(private readonly articleIndexService: ArticleIndexService) {}
@@ -11,7 +10,11 @@ export class ArticleIndexController {
     return this.articleIndexService.findAll(key);
   }
   @Post('/create')
-  createArticle(@Body() ArticleDto: ArticleDto): Promise<ArticleEntity> {
+  createArticle(@Body() ArticleDto: ArticleDto) {
     return this.articleIndexService.create(ArticleDto);
+  }
+  @Get(':id')
+  findOne(@Param('id') id: number): Promise<ArticleEntity> {
+    return this.articleIndexService.findOne(id);
   }
 }

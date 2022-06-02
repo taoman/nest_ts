@@ -10,6 +10,8 @@ export class ArticleEntity {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
+  name: string;
+  @Column()
   avatar: string;
   @CreateDateColumn()
   create_time: Timestamp;
