@@ -15,6 +15,6 @@ export class ArticleEntity {
   avatar: string;
   @CreateDateColumn()
   create_time: Timestamp;
-  @Column()
+  @Column('longtext')
   content: string;
 }
