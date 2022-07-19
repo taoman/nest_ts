@@ -1,16 +1,15 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
 import { ArticleIndexController } from './article-index/article-index.controller';
 import { ArticleIndexModule } from './article-index/article-index.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from './users/entities/user.entity';
 import { APP_FILTER } from '@nestjs/core';
 import { HttpExceptionFilter } from './section/errors.filter';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
-    UsersModule,
     ArticleIndexModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -23,11 +22,13 @@ import { HttpExceptionFilter } from './section/errors.filter';
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
     AppService,
-    { provide: APP_FILTER, useClass: HttpExceptionFilter },
+    // { provide: APP_FILTER, useClass: HttpExceptionFilter },
   ],
 })
 export class AppModule {}
