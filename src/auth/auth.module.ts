@@ -7,6 +7,8 @@ import { User } from 'src/user/entities/user.entity';
 import { LocalStorage } from './local.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+// import * as dotenv from 'dotenv';
+// dotenv.config();
 // const jwtModule = JwtModule.registerAsync({
 //   inject: [ConfigService],
 //   useFactory: async (configService: ConfigService) => {
@@ -21,7 +23,7 @@ import { ConfigService } from '@nestjs/config';
     TypeOrmModule.forFeature([User]),
     PassportModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
+      secret: 'abcdABCD1234554321',
     }),
   ],
   controllers: [AuthController],

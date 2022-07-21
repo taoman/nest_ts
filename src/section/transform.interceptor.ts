@@ -20,7 +20,7 @@ export class TransformInterceptor<T>
       map((rawData) => {
         return {
           data: rawData,
-          status: 200,
+          statusCode: 200,
           message: '请求成功',
         };
       }),
